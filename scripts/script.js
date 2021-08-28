@@ -14,19 +14,36 @@ function createPokemonLink(name, url) {
 }
 
 async function createPokemon(name, url) {
-  const newPokemon = document.createElement("div");
-  newPokemon.appendChild(await createPokemonImage(url));
-  newPokemon.appendChild(document.createElement("br"));
-  newPokemon.appendChild(createPokemonLink(name, url));
+  const newPokemonDiv = document.createElement("div");
+  newPokemonDiv.className = "pokemonDiv";
+  newPokemonDiv.textContent = name;
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => {
+      newPokemonDiv.textContent += json.id;
+      const imgEl = document.createElement("img");
+      imgEl.src = json.sprites.front_default;
+      newPokemonDiv.appendChild(imgEl);
+    });
 
-  return newPokemon;
+  // const response = await fetch(url);
+  // const json = await response.json();
+  //
+
+  // const imgEl = document.createElement("img");
+  // imgEl.src = json.sprites.front_default;
+  // newPokemonDiv.appendChild(imgEl);
+  // newPokemon.appendChild(await createPokemonImage(url));
+  // const brEl = document.createElement("br");
+  // newPokemon.appendChild(brEl);
+  // newPokemon.appendChild(createPokemonLink(name, url));
+  return newPokemonDiv;
 }
 
 async function searchPokemon(event) {
   if (event.code === "Enter") {
-    const term = event.targer.value;
+    const term = event.target.value;
     const url = `https://pokeapi.co/api/v2/pokemon/ ${term}`;
-
     const root = document.getElementById("root");
     root.innerHTML = "";
     const createPokemon = await getOnePokemon(term);
@@ -39,15 +56,18 @@ function createSearchField() {
   searchField.type = "text";
   searchField.placeholder = "Search";
   searchField.addEventListener("keyup", searchPokemon);
+
   return searchField;
 }
 
 async function init() {
   const root = document.getElementById("root");
-  document.body.insertBefore(createSearchField(), root);
+  root.prepend(createSearchField());
   const pokemon = await getAllPokemons();
   pokemon.forEach(async ({ name, url }) => {
+    console.log(name);
     root.appendChild(await createPokemon(name, url));
   });
 }
+
 init();
