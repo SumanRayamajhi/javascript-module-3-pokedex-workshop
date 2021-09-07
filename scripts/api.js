@@ -5,6 +5,12 @@ async function getAllPokemons() {
   return results;
 }
 
+// async function getOnePokemon(url) {
+//   const response = await fetch(url)
+//   const pokemon = await response.json()
+//   retu
+// }
+
 async function getOnePokemon(term) {
   const url = `https://pokeapi.co/api/v2/pokemon/${term}`;
   const response = await fetch(url);

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 body {
   background-color: rgb(71, 68, 68);
 }
@@ -21,6 +22,14 @@ input {
   outline: none;
   border: 1.5px solid rgb(202, 189, 189);
 }
+.divContainer {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
 .pokemonDiv {
   border: 2px solid rgb(92, 125, 153);
   margin: 10px;
@@ -28,8 +37,54 @@ input {
   padding: auto;
   width: 20%;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: larger;
 }
 img {
   height: 120px;
   width: 120px;
+}
+
+.divContainer div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.pokemonName {
+  color: #fff;
+  background-color: rgb(92, 125, 153);
+  border-radius: 0 0 10px 10px;
+  text-align: center;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  width: 100%;
+}
+.pokemonImg {
+  width: 7rem;
+  object-fit: cover;
+}
+
+.search-bar {
+  width: 70%;
+  border-radius: 16px;
+  height: 1.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.background {
+  background-color: gray;
+  max-width: 33rem;
+  margin: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header {
+  font-size: 2.5rem;
+  font-family: "Roboto", sans-serif;
 }
